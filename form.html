@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register For Woxsen Olympiad</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="COTDnobg.png">
+    <script src="config.js"></script>
+
+</head>
+<body>
+    <div class="form-container">
+        <div class="logos-container">
+            <img src="COTDnobg.png" alt="COTD Logo" class="cotd-logo">
+            <h2>Woxsen Olympiad</h2>
+            <img src="wou.jpg" alt="Woxsen Logo" class="woxsen-logo">
+        </div>
+
+        
+        
+
+        <form>
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="email">Email *</label>
+            <input type="text" id="email" name="email" required 
+                placeholder="example@woxsen.edu.in" 
+                pattern="^[a-zA-Z0-9._%+-]+@woxsen\.edu\.in$" 
+                title="Please enter a valid email ending with @woxsen.edu.in">
+
+            
+            <label for="phoneNumber">Phone Number (WhatsApp) *</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" required>
+            
+            
+            <label for="rollNumber">Roll Number *</label>
+<input type="text" id="rollNumber" name="rollNumber" required 
+    placeholder="_ _ WU _ _ _ _ _ _ _ (or 8 digits)" 
+    pattern="\d{2}WU\d{7,8}" 
+    title="Format: Two digits followed by 'WU' and seven or eight digits (e.g., 22WU0101028 or 22WU01010289)">
+
+
+            
+            <label for="school">School *</label>
+                <select id="school" name="school" required>
+                    <option value="" disabled selected>Select your school</option>
+                    <option value="mba">SOB (School of Business) - MBA</option>
+                    <option value="bba">SOB (School of Business) - BBA</option>
+                    <option value="sot">SOT (School of Technology)</option>
+                    <option value="soad">SOAD (School of Arts & Design)</option>
+                    <option value="soap">SOAP (School of Architecture & Planning)</option>
+                    <option value="solh">SOLH (School of Liberal Arts & Humanities)</option>
+                    <option value="sos">SOS (School of Sciences)</option>
+                    <option value="sol">SOL (School of Law)</option>
+                </select>
+            
+            <label for="semester">Semester *</label>
+            <input type="text" id="semester" name="semester" required>
+            
+            <label for="section">Section *</label>
+            <input type="text" id="section" name="section" required>
+            
+            <label>Future Aspirations *</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="course" value="GRE"> GRE</label>
+                <label><input type="checkbox" name="course" value="GMAT"> GMAT</label>
+                <label><input type="checkbox" name="course" value="CAT"> CAT</label>
+                <label><input type="checkbox" name="course" value="IELTS"> IELTS</label>
+                <label><input type="checkbox" name="course" value="TOEFL"> TOEFL</label>
+                <label><input type="checkbox" name="course" value="CLAT"> CLAT</label>
+                <label><input type="checkbox" name="course" value="UPSC"> UPSC</label>
+                <label><input type="checkbox" name="course" value="GATE"> GATE</label>
+                <label><input type="checkbox" name="course" value="Personal Branding"> Personal Branding</label>
+                <label><input type="checkbox" name="course" value="Bank"> Banking</label>
+                <label><input type="checkbox" name="course" value="French Language"> French</label>
+                <label><input type="checkbox" name="course" value="German Language"> German</label>
+                <label><input type="checkbox" name="course" value="Japanese"> Japanese</label>
+                <label><input type="checkbox" name="course" value="Spanish"> Spanish</label>
+                <label><input type="checkbox" name="course" value="Other Foreign Language"> Other Foreign Language</label>
+            </div>
+
+            
+            <label>Interested in Internship? *</label>
+            <div class="radio-group">
+                <label><input type="radio" name="internship" value="yes" required> Yes</label>
+                <label><input type="radio" name="internship" value="no"> No</label>
+              </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="sponsor-logos">
+            <h3>Exclusive Sponsors</h3>
+            <img src="img\sponsor1.png" alt="Jamboree Logo" class="jamboree-logo">
+            <img src="img\sponsor4.png" alt="IMS Logo" class="ims-logo">
+            <h3 style="padding-bottom: 20px;">Event Sponsors</h3>
+            <div class="sponsor-bottom-logos">
+                <img src="img\sponsor2.png" alt="Alliance Francaise Logo" class="alliance-logo">
+                <img src="img\sponsor3.png" alt="ICBI Logo" class="icbi-logo">
+                <img src="img\sponsor7.jpg" alt="BMW Logo" class="BMW-logo">
+
+            </div>
+            <div class="sponsor-bottom-logos">
+                <img src="img\Sponsor6.jpg" alt="JSP Logo" class="JSP-logo">
+                <img src="img\Sponsor5.jpg" style="width: 60px; height: auto; padding: 5px;" alt="Pi-Dot Logo" class="pidot-logo">
+                
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+        
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+        
+                const courseCheckboxes = document.querySelectorAll('input[name="course"]:checked');
+                const selectedCourses = Array.from(courseCheckboxes).map(cb => cb.value);
+        
+                const formData = new FormData();
+                formData.append('fullName', document.getElementById('fullName').value);
+                formData.append('email', document.getElementById('email').value);
+                formData.append('phoneNumber', document.getElementById('phoneNumber').value);
+                formData.append('rollNumber', document.getElementById('rollNumber').value);
+                formData.append('school', document.getElementById('school').value);
+                formData.append('semester', document.getElementById('semester').value);
+                formData.append('section', document.getElementById('section').value);
+                formData.append('courses', selectedCourses.join(','));
+                formData.append('internship', document.querySelector('input[name="internship"]:checked').value);
+        
+                try {
+                    const response = await fetch(config.apiUrl, {
+                        method: 'POST',
+                        body: formData
+                    });
+        
+                    const result = await response.json();
+        
+                    if (result.status === 'success') {
+                        let toastContent = `
+                            <div>
+                                <strong>Successfully Registered!</strong>
+                            </div>
+                        `;
+        
+                        if (result.groupLinks && result.groupLinks.length > 0) {
+                            const groupLinksContent = result.groupLinks.map(link =>
+                                `<a href="${link.link}" target="_blank" style="color: #007bff; text-decoration: underline;">${link.course}</a>`
+                            ).join(', ');
+        
+                            toastContent += `
+                                <div>
+                                    <p>Kindly join the respective groups to stay informed!</p>
+                                    <p>WhatsApp group links: ${groupLinksContent}</p>
+                                </div>
+                            `;
+                        }
+        
+                        showToast(toastContent);
+                        form.reset();
+                    } else {
+                        showToast(`
+                            <div>
+                                <strong>Error submitting form</strong>
+                                <p>${result.message}</p>
+                            </div>
+                        `, true);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showToast(`
+                        <div>
+                            <strong>Error submitting form</strong>
+                            <p>Please try again later.</p>
+                        </div>
+                    `, true);
+                }
+            });
+        
+            function showToast(content, isError = false) {
+                const overlay = document.createElement('div');
+                overlay.className = 'toast-overlay';
+        
+                const toast = document.createElement('div');
+                toast.className = `toast ${isError ? 'error' : 'success'}`;
+                toast.innerHTML = `
+                    ${content}
+                    <button class="close-toast">&times;</button>
+                `;
+        
+                overlay.appendChild(toast);
+                document.body.appendChild(overlay);
+        
+                const closeButton = toast.querySelector('.close-toast');
+                closeButton.addEventListener('click', () => overlay.remove());
+            }
+        });
+        
+        
+
+        
+        
+    </script>
+    
+    
+
+</body>
+</html>
+
